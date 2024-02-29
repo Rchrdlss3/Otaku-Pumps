@@ -1,0 +1,11 @@
+Search for album, artist, song here:
+
+https://developer.spotify.com/documentation/web-api/reference/search
+
+Let’s create a playlist
+
+https://developer.spotify.com/documentation/web-api/reference/create-playlist
+
+Get their profile: have them verify who they are first
+
+https://developer.spotify.com/documentation/web-api/reference/get-users-profile
