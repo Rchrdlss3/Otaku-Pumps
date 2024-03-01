@@ -1,7 +1,7 @@
 # Otaku Pumps
 [![My Skills](https://skillicons.dev/icons?i=mongo,express,react,nodejs,js,html,css,mui)](https://skillicons.dev)
 ## Overview
-...
+...Project Status: WIP
 ## Installation
 ### NodeJS 
 ```
