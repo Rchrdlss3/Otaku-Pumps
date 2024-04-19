@@ -1,0 +1,46 @@
+import RegistrationComponent from "../components/Registration/RegistrationComponent";
+import HomePage from "../pages/HomePage";
+import SignInPage from "../pages/SignInPage";
+import RegistrationPage from "../pages/RegistrationPage";
+import WorkoutsPage from "../pages/WorkoutsPage";
+import MusicPage from "../pages/MusicPage";
+import AnimePage from "../pages/AnimePage";
+
+export const NAVIGATION_LINKS = new Map([
+    ["home", {
+        path: "/",
+        name: "Home",
+        element: <HomePage />,
+        show: true
+    }],
+    ["anime", {
+        path: "/anime",
+        name: "Anime",
+        element: <AnimePage />,
+        show: true
+    }],
+    ["music", {
+        path: "/music",
+        name: "Music",
+        element: <MusicPage />,
+        show: true
+    }],
+    ["workout", {
+        path: "/workouts",
+        name: "Workouts",
+        element: <WorkoutsPage />,
+        show: true
+    }],
+    ["signin", {
+        path: "/sign-in",
+        name: "Sign In",
+        element: <SignInPage />,
+        show: false
+    }],
+    ["registration", {
+        path: "/registration",
+        name: "Registration",
+        element: <RegistrationPage />,
+        show: false
+    }]
+])
