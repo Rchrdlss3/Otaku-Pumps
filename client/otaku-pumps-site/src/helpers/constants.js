@@ -1,4 +1,3 @@
-import RegistrationComponent from "../components/Registration/RegistrationComponent";
 import HomePage from "../pages/HomePage";
 import SignInPage from "../pages/SignInPage";
 import RegistrationPage from "../pages/RegistrationPage";

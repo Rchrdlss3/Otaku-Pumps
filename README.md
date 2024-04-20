@@ -23,6 +23,14 @@ npm i mongoose
 ```
 npm i nodemon
 ```
+### UserAgent Parser
+```
+npm i ua-parser-js
+```
+### CORS
+```
+npm i cors
+```
 ## Project Structure
 ```
 .

@@ -1,6 +1,9 @@
 require('dotenv').config();
 const express = require('express')
+const cors = require('cors')
+var parser = require('ua-parser-js');
 const app = express()
+
 const UserSchema = require('./models/User/UserModel')
 const mongoose = require('mongoose');
 const db = mongoose.connection
@@ -16,7 +19,8 @@ async function connect() {
 }
 
 app.listen(3000)
-app.use(express.json())
+
+app.use(express.json(),cors())
 app.get('/users',(req,res)=> {
   try {
       res.status(200).send(JSON.stringify(User))
@@ -60,7 +64,15 @@ app.put('/update',(req,res) => {
   } catch (e) {
     res.status(500).send(internalError(e))
   }
+})
 
+app.get('/get-device',(req,res) => {
+  try {
+    var userAgent = parser(req.headers['user-agent'])
+    res.end(JSON.stringify(userAgent,null,'  '));
+  } catch (e) {
+    res.status(500).send(internalError(e))
+  }
 })
 
 connect();

@@ -8,7 +8,10 @@ import ThemeSwitchComponent from './ThemeSwitchComponent';
 function NavigationBar({theme,setTheme}) {
   return (
     <div style = {{
-      paddingTop: '5px'
+      paddingTop: '5px',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center'
     }}>
     {[...NAVIGATION_LINKS.values()].map(route => 
     route.show ?

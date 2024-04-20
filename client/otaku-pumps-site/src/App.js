@@ -2,7 +2,7 @@ import './App.css';
 import {Routes, Route, Outlet, Link, BrowserRouter, HashRouter} from 'react-router-dom';
 import { NAVIGATION_LINKS } from './helpers/constants';
 import { useEffect, useState } from 'react';
-import {getCurrentTheme} from './helpers/functions';
+import {getCurrentTheme,getParsedUA} from './helpers/functions';
 import HomePage from './pages/HomePage';
 import AnimePage from './pages/AnimePage';
 import WorkoutsPage from './pages/WorkoutsPage';
@@ -15,8 +15,10 @@ function App() {
 
   useEffect(() => {
     setThemeState(getCurrentTheme());
-    console.log(themeState)
-  },[localStorage])
+    getParsedUA().then(function(res)  {
+      localStorage.setItem('DEVICE',res.device.model)
+    })
+  },[])
 
   return (
     <div className="App" style= {{
