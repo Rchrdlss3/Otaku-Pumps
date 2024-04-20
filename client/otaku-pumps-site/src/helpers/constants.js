@@ -6,6 +6,11 @@ import WorkoutsPage from "../pages/WorkoutsPage";
 import MusicPage from "../pages/MusicPage";
 import AnimePage from "../pages/AnimePage";
 
+
+export const IMAGE_URL = 'https://rchrdlss3.github.io/otaku-pumps-images/';
+
+export const SLOGAN = 'The App for Anime x Gym Rats'
+
 export const NAVIGATION_LINKS = new Map([
     ["home", {
         path: "/",

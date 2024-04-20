@@ -1,10 +1,10 @@
 import React from 'react';
 import NavigationBar from '../components/CommonComponents.js/NavigationBar';
 
-function MusicPage() {
+function MusicPage({theme,setTheme}) {
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar theme = {theme} setTheme = {setTheme}/>
       MusicPage
     </div>
   )

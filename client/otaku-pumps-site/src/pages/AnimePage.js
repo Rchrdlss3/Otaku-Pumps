@@ -1,10 +1,10 @@
 import React from 'react';
 import NavigationBar from '../components/CommonComponents.js/NavigationBar';
 
-function AnimePage() {
+function AnimePage({theme,setTheme}) {
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar theme = {theme} setTheme = {setTheme}/>
       AnimePage
     </div>
   )
