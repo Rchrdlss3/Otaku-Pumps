@@ -9,10 +9,10 @@ import WorkoutsPage from './pages/WorkoutsPage';
 import SignInPage from './pages/SignInPage';
 import RegistrationPage from './pages/RegistrationPage';
 import MusicPage from './pages/MusicPage';
+import LoadingSpinner from './components/CommonComponents.js/LoadingSpinner';
 
 function App() {
   const [themeState,setThemeState] = useState({});
-
   useEffect(() => {
     setThemeState(getCurrentTheme());
     getParsedUA().then(function(res)  {

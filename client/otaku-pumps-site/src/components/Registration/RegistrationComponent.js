@@ -1,8 +1,19 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import ImageComponent from '../CommonComponents.js/ImageComponent'
+import { React, useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import { HTTP_STATUS } from '../../helpers/constants'
+import { registerUser } from '../../helpers/functions'
+import { commonButtonStyle } from '../../helpers/styles'
+import DialogMessageComponent from '../CommonComponents.js/DialogMessageComponent'
+import LoadingSpinner from '../CommonComponents.js/LoadingSpinner'
+import FavoriteAnimesSelection from './FavoriteAnimesSelection'
+import RegistrationTextField from './RegistrationTextField'
 
 function RegistrationComponent({theme,setTheme}) {
+
+    const [openDialogMessage,setOpenDialogMessage] = useState(false);
+    const [dialogMessage,setDialogMessage] = useState('');
+    const [loading,setLoading] = useState(true);
+    const navigate = useNavigate();
     const [topAnime,setTopAnime] = useState({
         data : [{
             title : ''   
@@ -13,26 +24,27 @@ function RegistrationComponent({theme,setTheme}) {
         lastName: '',
         email: '',
         userName: '',
-        passWord: '',
+        password: '',
         favoriteAnimes: []
     })
+    
     const getTopAnime = () => {
         fetch ('https://api.jikan.moe/v4/top/anime')
         .then ((res) => res.json())
         .then((data) => setTopAnime(data))
     }
     useEffect (() => {
+        console.log(loading)
         getTopAnime();
+        setLoading(false);
+        console.log(loading)
     },[])
 
   return (
     <div>
-        <ImageComponent size = {300}/>
         <div style = {{
             display: 'flex',
-            justifyContent: 'center',
-            border: `5px solid ${theme.primary}`,
-            borderRadius: '5px',
+            justifyContent: 'center'
         }}>
             <form style = {{
                 display: 'flex',
@@ -41,58 +53,90 @@ function RegistrationComponent({theme,setTheme}) {
                 flexWrap: 'wrap',
                 border: `1 px solid ${theme.color}`,
                 width: '500px',
+                justifyContent: 'center'
             }}>
-            <input id = "e-mail" type = "text" defaultValue = "E-mail" 
-            onChange = {(e) => {
-                setUserRegistration({
-                    ...userRegistration,
-                    email: e.target.value
-                })
-            }}></input>
-            <input type = "text"  defaultValue = "User Name" 
-            onChange = {(e) => {
-                setUserRegistration({
-                    ...userRegistration,
-                    userName: e.target.value
-                })
-            }}></input>
-            <input type = "password" defaultValue = "Password" 
-            onChange = {(e) => {
-                setUserRegistration({
-                    ...userRegistration,
-                    passWord: e.target.value
-                })
-            }}></input>
-            <input type = "text" defaultValue = "First Name" 
-            onChange = {(e) => {
-                setUserRegistration({
-                    ...userRegistration,
-                    firstName: e.target.value
-                })
-            }}></input>
-            <input type = "text" defaultValue = "Last Name" 
-            onChange = {(e) => {
-                setUserRegistration({
-                    ...userRegistration,
-                    lastName: e.target.value
-                })
-            }}></input>
-            <input type = "text" defaultValue = "Favorite Anime(s)" value = {userRegistration.favoriteAnimes}
-            onChange = {(e) => {}}></input>
-            <label htmlFor = "favorite-anime-list">You can select from hottest anime provided by Jikan API</label>
-            <select id = "favorite-anime-list" onChange = {(e) =>
+            <RegistrationTextField 
+            id = {'email'}
+            label = {'E-mail'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {'E-mail'} 
+            type = {'text'}
+            theme = {theme}
+            />
+            <RegistrationTextField 
+            id = {'userName'}
+            label = {'User Name'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {'User Name'} 
+            type = {'text'}
+            theme = {theme}
+            />
+            <RegistrationTextField 
+            id = {'password'}
+            label = {'Password'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {'Password'} 
+            type = {'password'}
+            theme = {theme}
+            />
+            <RegistrationTextField 
+            id = {'firstName'}
+            label = {'First Name'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {'First Name'} 
+            type = {'text'}
+            theme = {theme}
+            />
+            <RegistrationTextField 
+            id = {'lastName'}
+            label = {'Last Name'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {'Last Name'} 
+            type = {'text'}
+            theme = {theme}
+            />
+            <RegistrationTextField 
+            id = {'favoriteAnimes'}
+            label = {'Favorite Anime(s)'} 
+            userRegistration = {userRegistration}
+            setUserRegistration = {setUserRegistration} 
+            defaultValue = {userRegistration.favoriteAnimes} 
+            type = {'text'}
+            theme = {theme}
+            />
+            <FavoriteAnimesSelection 
+            userRegistration = {userRegistration} 
+            setUserRegistration = {setUserRegistration} 
+            topAnime = {topAnime} 
+            theme = {theme}/>
+            <input
+            type ="submit"
+            value = "Submit" 
+            style = {commonButtonStyle({theme})} 
+            onKeyDown = {(e) => console.log(userRegistration)}
+            onClick = {(e) => {
+                registerUser(userRegistration).then(res => 
                 {
-                userRegistration.favoriteAnimes.push(e.target.value)         
-                setUserRegistration({
-                    ...userRegistration
-                })}}>
-                {topAnime.data.map(anime => 
-                <option value = {anime.title}>{anime.title}</option>
-                )}
-            </select>
-            <input type ="submit" value = "submit" onClick = {(e) => {console.log(userRegistration)}}></input>
+                    if (res == HTTP_STATUS.SUCCESS) {
+                        setLoading(true)
+                        navigate("../sign-in",{replace:true});
+                    } else {
+                        setDialogMessage("Sorry! Looks like there's an issue with registering this account");
+                        setOpenDialogMessage(true);
+                    }
+                }
+                )
+                }}>   
+            </input>
             </form>
         </div>
+        <LoadingSpinner theme = {theme} open = {loading} message = {'Loading...'}/>
+        <DialogMessageComponent theme = {theme} open = {openDialogMessage} setOpen = {setOpenDialogMessage} message = {dialogMessage}/>
     </div>
   )
 }

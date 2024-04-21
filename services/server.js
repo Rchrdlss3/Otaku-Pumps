@@ -47,7 +47,7 @@ app.delete('/delete', async (req,res) => {
   }
 
 })
-app.post('/post', async(req,res) => {
+app.post('/register-user', async(req,res) => {
   try {
   let data = new UserSchema(req.body); 
   const result = await data.save();

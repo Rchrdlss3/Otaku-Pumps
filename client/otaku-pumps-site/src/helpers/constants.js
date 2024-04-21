@@ -8,7 +8,14 @@ import AnimePage from "../pages/AnimePage";
 
 export const IMAGE_URL = 'https://rchrdlss3.github.io/otaku-pumps-images/';
 
-export const SLOGAN = 'The App for Anime x Gym Rats'
+export const SLOGAN = 'The App for Anime x Gym Rats';
+
+export const BACK_END_URL = 'http://localhost:3000';
+
+export const HTTP_STATUS = {
+    'FAILURE' : 'FAILURE',
+    'SUCCESS' : 'SUCCESS'
+}
 
 export const NAVIGATION_LINKS = new Map([
     ["home", {

@@ -4,19 +4,20 @@ import {NavLink} from 'react-router-dom';
 import ThemeSwitchComponent from '../components/CommonComponents.js/ThemeSwitchComponent';
 import { navLinkStyle } from '../helpers/styles';
 import { WebTitleComponent } from '../components/CommonComponents.js/WebTitleComponent';
+import ImageComponent from '../components/CommonComponents.js/ImageComponent';
 
 function RegistrationPage({theme,setTheme}) {
   return (
     <div>
-        <RegistrationComponent theme = {theme} setTheme = {setTheme}/>
-        <WebTitleComponent theme = {theme} fontSize = {3} welcome = {false}/>
+      <WebTitleComponent theme = {theme} fontSize = {3} welcome = {false}/>
         <div>
         <NavLink to = '/' style = {navLinkStyle}>Go back Home</NavLink> 
-        or have an account ? 
+        or 
         <NavLink to = '/sign-in' style = {navLinkStyle}>Sign In</NavLink> 
-        </div>
         <ThemeSwitchComponent theme = {theme} setTheme = {setTheme}/>
-
+        </div>
+        <ImageComponent size = {300}/>
+        <RegistrationComponent theme = {theme} setTheme = {setTheme}/>
     </div>
   )
 }
