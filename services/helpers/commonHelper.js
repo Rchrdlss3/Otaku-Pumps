@@ -6,4 +6,11 @@ const internalError = ((error) => {
     }
   });
 
+  const userExistError = ((error) => {
+    return {
+      status: 400,
+      error: 'User already exists',
+      message: error
+    }
+  }) 
   module.exports = internalError;

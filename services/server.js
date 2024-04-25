@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require('express')
 const cors = require('cors')
 var parser = require('ua-parser-js');
-const app = express()
-
-const UserSchema = require('./models/User/UserModel')
+const app = express();
 const mongoose = require('mongoose');
-const db = mongoose.connection
+const db = mongoose.connection;
 const internalError = require('./helpers/commonHelper');
+const cookieParser = require('cookie-parser')
+const userRoute = require('./routes/users');
 
 async function connect() {
   try {
@@ -19,15 +19,10 @@ async function connect() {
 }
 
 app.listen(3000)
-
-app.use(express.json(),cors())
-app.get('/users',(req,res)=> {
-  try {
-      res.status(200).send(JSON.stringify(User))
-  } catch (e) {
-    res.status(500).send(internalError(e))
-  }
-})
+app.use(express.json())
+app.use(cors())
+app.use(cookieParser());
+app.use('/user',userRoute)
 
 app.get('/',(req,res) => {
   try {
@@ -47,15 +42,8 @@ app.delete('/delete', async (req,res) => {
   }
 
 })
-app.post('/register-user', async(req,res) => {
-  try {
-  let data = new UserSchema(req.body); 
-  const result = await data.save();
-  res.send(result);
-  } catch (e) {
-    res.status(500).send(internalError(e))
-  }
-})
+
+
 app.put('/update',(req,res) => {
   try {
   let selectedId = req.query.id;

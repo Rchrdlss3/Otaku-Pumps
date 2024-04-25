@@ -31,8 +31,19 @@ npm i ua-parser-js
 ```
 npm i cors
 ```
-## Project Structure
+### JWT
 ```
+npm i express-jwt
+```
+## Cookie Parser
+```
+npm i cookie-parser
+```
+## Is Valid
+```
+npm isvalid
+```
+## Project Structure
 .
 └── otaku-pumps/
     ├── client
