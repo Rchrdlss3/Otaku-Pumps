@@ -9,10 +9,15 @@ import WorkoutsPage from './pages/WorkoutsPage';
 import SignInPage from './pages/SignInPage';
 import RegistrationPage from './pages/RegistrationPage';
 import MusicPage from './pages/MusicPage';
-import LoadingSpinner from './components/CommonComponents.js/LoadingSpinner';
+import NavigationBar from './components/CommonComponents.js/NavigationBar';
 
 function App() {
   const [themeState,setThemeState] = useState({});
+  const [user,setUser] = useState({
+    userName: null,
+    password: null
+  });
+  console.log(user)
   useEffect(() => {
     setThemeState(getCurrentTheme());
     getParsedUA().then(function(res)  {
@@ -34,16 +39,14 @@ function App() {
       backgroundImage: `url(${themeState.backgroundImage})`,
       }}>
       <HashRouter>
+      <NavigationBar theme = {themeState} setTheme = {setThemeState}/>
       <Routes>
-        <Route path = '/' element = {<HomePage theme = {themeState} setTheme = {setThemeState}/>}></Route>
-        <Route path = '/anime' element = {<AnimePage theme = {themeState} setTheme = {setThemeState}/>} ></Route>
-        <Route path = '/music' element = {<MusicPage theme = {themeState} setTheme = {setThemeState}/>}></Route>
-        <Route path = '/workouts' element = {<WorkoutsPage theme = {themeState} setTheme = {setThemeState}/>}></Route>
-        <Route path = '/sign-in' element = {<SignInPage theme = {themeState} setTheme = {setThemeState}/>}></Route>
-        <Route path = '/registration' element = {<RegistrationPage theme = {themeState} setTheme = {setThemeState}/>}></Route>
-      {/* {[...NAVIGATION_LINKS.values()].map(route => 
-        <Route path = {route.path} element ={route.element}>{route.name}</Route>  
-      )} */}
+        <Route path = '/' element = {<HomePage user = {user} theme = {themeState}/>}></Route>
+        <Route path = '/anime' element = {<AnimePage user = {user} setUser = {setUser} theme = {themeState} setTheme = {setThemeState}/>} ></Route>
+        <Route path = '/music' element = {<MusicPage user = {user} setUser = {setUser} theme = {themeState} setTheme = {setThemeState}/>}></Route>
+        <Route path = '/workouts' element = {<WorkoutsPage user = {user} setUser = {setUser} theme = {themeState} setTheme = {setThemeState}/>}></Route>
+        <Route path = '/sign-in' element = {<SignInPage user = {user} setUser = {setUser} theme = {themeState} setTheme = {setThemeState}/>}></Route>
+        <Route path = '/registration' element = {<RegistrationPage user = {user} setUser = {setUser} theme = {themeState} setTheme = {setThemeState}/>}></Route>
       </Routes>
       </HashRouter>
     </div>

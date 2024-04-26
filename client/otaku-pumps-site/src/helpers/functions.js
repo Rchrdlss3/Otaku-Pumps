@@ -1,5 +1,6 @@
 import { BACK_END_URL, HTTP_STATUS } from "./constants";
 import { DARK_THEME, LIGHT_THEME } from "./themes";
+import { IMAGE_URL } from "./constants";
 
 export const getCurrentTheme = () => {
     let theme = {}
@@ -42,8 +43,7 @@ export const getParsedUA = () => {
 }
 
 export const registerUser = (registeredUser) => {
-
-    return fetch(`${BACK_END_URL}/register-user`, {
+    return fetch(`${BACK_END_URL}/user/register-user`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -54,4 +54,21 @@ export const registerUser = (registeredUser) => {
     } else {
         return HTTP_STATUS.FAILURE
     }})
+}
+export const loginUser = (user) => {
+    return fetch(`${BACK_END_URL}/user/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(res => {if (res.status == 200) {
+            return HTTP_STATUS.SUCCESS;
+        } else {
+            return HTTP_STATUS.FAILURE
+        }
+    })
+}
+export const enterValidMessage = (field) => {
+    return `Please enter valid ${field}`
 }

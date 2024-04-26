@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { NAVIGATION_LINKS } from '../../helpers/constants';
-import { getCurrentTheme, setCurrentTheme } from '../../helpers/functions';
-import { DARK_THEME } from '../../helpers/themes';
 import ThemeSwitchComponent from './ThemeSwitchComponent';
 
 function NavigationBar({theme,setTheme}) {

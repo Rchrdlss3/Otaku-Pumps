@@ -21,14 +21,15 @@ export var commonButtonStyle = ({theme}) => {
         height: '24px'
     }
 }
-export var inputStyle = ({theme}) => {
+export function inputStyle ({theme},error) {
     return ({
         height: '25px',
         width: '200px',
         borderRadius: '5px',
         margin: '5px',
         color: theme.font,
-        background: theme.transparent
+        background: theme.transparent,
+        border: error ? `1px solid red` : 'none'
     })
 }
 

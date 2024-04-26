@@ -6,10 +6,10 @@ import { useEffect,useState } from 'react';
 
 function ThemeSwitchComponent({theme,setTheme}) {
     const [isChecked,setIsChecked] = useState((getCurrentTheme() == DARK_THEME) ? true : false);
-
     useEffect(()=> {
         setIsChecked((theme == DARK_THEME) ? true : false)
     },[theme])
+
   return (
       <div style = {{
           display: 'inline-flex',

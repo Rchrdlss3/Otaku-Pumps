@@ -21,7 +21,7 @@ router.post('/register-user', async(req,res) => {
             }
         }
 })
-router.get('/login',(req,res) => {
+router.post('/login',(req,res) => {
         const reqUser = req.body;
         UserSchema.findOne({userName: reqUser.userName}).then(
             (foundUser) => {

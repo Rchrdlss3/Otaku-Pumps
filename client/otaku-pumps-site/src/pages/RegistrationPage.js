@@ -10,12 +10,9 @@ function RegistrationPage({theme,setTheme}) {
   return (
     <div>
       <WebTitleComponent theme = {theme} fontSize = {3} welcome = {false}/>
-        <div>
         <NavLink to = '/' style = {navLinkStyle}>Go back Home</NavLink> 
         or 
         <NavLink to = '/sign-in' style = {navLinkStyle}>Sign In</NavLink> 
-        <ThemeSwitchComponent theme = {theme} setTheme = {setTheme}/>
-        </div>
         <ImageComponent size = {300}/>
         <RegistrationComponent theme = {theme} setTheme = {setTheme}/>
     </div>

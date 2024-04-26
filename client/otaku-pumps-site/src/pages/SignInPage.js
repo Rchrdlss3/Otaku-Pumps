@@ -6,16 +6,13 @@ import { NavLink } from 'react-router-dom'
 import { navLinkStyle } from '../helpers/styles'
 import ThemeSwitchComponent from '../components/CommonComponents.js/ThemeSwitchComponent'
 
-function SignInPage({theme,setTheme}) {
+function SignInPage({user,setUser,theme}) {
   return (
     <div>
-      <WebTitleComponent theme = {theme} fontSize = {3} welcome = {false}/>
-      <div>
+      <WebTitleComponent theme = {theme} fontSize = {3} welcome = {false} user = {user}/>
       <NavLink style = {navLinkStyle} to = "/registration">Create Account</NavLink>         
-      <ThemeSwitchComponent theme = {theme} setTheme = {setTheme}/>
-      </div>
       <ImageComponent size = {300}/>
-      <SignInComponent theme = {theme}/> 
+      <SignInComponent user = {user} setUser = {setUser} theme = {theme}/> 
     </div>
   )
 }

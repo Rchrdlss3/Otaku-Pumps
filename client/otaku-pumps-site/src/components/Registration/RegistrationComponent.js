@@ -7,9 +7,9 @@ import DialogMessageComponent from '../CommonComponents.js/DialogMessageComponen
 import LoadingSpinner from '../CommonComponents.js/LoadingSpinner'
 import FavoriteAnimesSelection from './FavoriteAnimesSelection'
 import RegistrationTextField from './RegistrationTextField'
+import { enterValidMessage } from '../../helpers/functions';
 
-function RegistrationComponent({theme,setTheme}) {
-
+function RegistrationComponent({theme}) {
     const [openDialogMessage,setOpenDialogMessage] = useState(false);
     const [dialogMessage,setDialogMessage] = useState('');
     const [loading,setLoading] = useState(true);
@@ -63,6 +63,7 @@ function RegistrationComponent({theme,setTheme}) {
             defaultValue = {'E-mail'} 
             type = {'text'}
             theme = {theme}
+            errorMessage = {enterValidMessage('e-mail')}
             />
             <RegistrationTextField 
             id = {'userName'}
@@ -72,6 +73,7 @@ function RegistrationComponent({theme,setTheme}) {
             defaultValue = {'User Name'} 
             type = {'text'}
             theme = {theme}
+            errorMessage = {enterValidMessage('user name')}
             />
             <RegistrationTextField 
             id = {'password'}
@@ -81,6 +83,7 @@ function RegistrationComponent({theme,setTheme}) {
             defaultValue = {'Password'} 
             type = {'password'}
             theme = {theme}
+            errorMessage = {enterValidMessage('strong password')}
             />
             <RegistrationTextField 
             id = {'firstName'}
@@ -90,6 +93,7 @@ function RegistrationComponent({theme,setTheme}) {
             defaultValue = {'First Name'} 
             type = {'text'}
             theme = {theme}
+            errorMessage = {enterValidMessage('first name')}
             />
             <RegistrationTextField 
             id = {'lastName'}
@@ -99,6 +103,7 @@ function RegistrationComponent({theme,setTheme}) {
             defaultValue = {'Last Name'} 
             type = {'text'}
             theme = {theme}
+            errorMessage = {enterValidMessage('last name')}
             />
             <RegistrationTextField 
             id = {'favoriteAnimes'}
