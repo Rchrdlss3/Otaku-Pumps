@@ -12,7 +12,7 @@
          type: String,
          required: true,
      },
-     userName : {
+     userName: {
         type: String,
         required: true
      },

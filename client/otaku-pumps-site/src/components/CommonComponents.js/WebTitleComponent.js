@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { SLOGAN } from '../../helpers/constants';
 
 export function WebTitleComponent({user,theme,welcome,fontSize}) {
@@ -13,7 +12,7 @@ export function WebTitleComponent({user,theme,welcome,fontSize}) {
             fontSize: `${fontSize}em`,
         }}>
             {welcome ? `Welcome to `: null}<span style = {{color: theme.color}}>Otaku Pumps </span>
-            {user.userName ? <span>{user.userName}</span> : null}
+            {user ? <span>{user.userName}</span> : null}
         </h1>
         <h4 style = {{
             marginTop: '0'

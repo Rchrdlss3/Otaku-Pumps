@@ -39,7 +39,10 @@ router.post('/login',(req,res) => {
                 })
             }}
         ).catch((err) => {
-            return res.status(400).send(`${err}`)
+            return res.status(404).send(`
+            ${err}
+            ${reqUser.userName}
+            `)
         }) 
 })
 
