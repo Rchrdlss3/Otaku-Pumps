@@ -72,3 +72,7 @@ export const loginUser = (user) => {
 export const enterValidMessage = (field) => {
     return `Please enter valid ${field}`
 }
+
+export const testName = (token) => {
+    document.cookie = `TOKEN = ${token}`
+}

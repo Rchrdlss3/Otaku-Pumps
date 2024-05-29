@@ -45,6 +45,7 @@ export default function SignInComponent({setUser,theme}) {
                         {
                          if(res == HTTP_STATUS.SUCCESS) {
                            setUser(loginInfo)
+                           
                            navigate('../',{replace:true})
                          } else {
                            setOpenDialogMessage(true)
